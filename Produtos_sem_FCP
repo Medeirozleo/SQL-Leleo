@@ -1,0 +1,21 @@
+select embalagem.codigobarras as Codigo_de_Barras, 
+produto.descricao as Descrição_Produto, 
+ncm.codigo as NCM, 
+ncm.nome as Descrição_NCM, 
+icmsestadualespecifico.fcpaliquota as Aliquota_FCP 
+from ICMSEstadualEspecifico
+join produto on icmsestadualespecifico.produtoid = produto.id
+join embalagem on embalagem.produtoid = produto.id
+join ncm on produto.ncmid = ncm.id
+where
+produto.status = 'A' and ncm.codigo IN (
+      '21061000', 
+      '21069010', 
+      '21069021', 
+      '21069029', 
+      '21069030', 
+      '21069040', 
+      '21069050', 
+      '21069060', 
+      '21069090'
+  ) and icmsestadualespecifico.fcpaliquota = 0

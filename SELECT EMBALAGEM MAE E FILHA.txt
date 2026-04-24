@@ -1,0 +1,10 @@
+select 
+p1.descricao as Descricao_Produto, 
+e1.apresentacao as Apresentação, 
+e2.codigobarras as Codigo_Filha,
+e2.etiqueta as Etiqueta_Filha, 
+e1.codigobarras as Codigo_Mae
+from embalagem e1
+join embalagem e2 on e1.embalagemcontidaid = e2.id 
+join produto p1 on e1.produtoid = p1.id
+where e1.codigobarras is not null
